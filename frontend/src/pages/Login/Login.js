@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 
 import api from '../../services/api';
-
+import Modal from '../../components/Modal/Modal';
 import Loading from '../../components/Loading/Loading';
 
 export default function Login() {
 
-  const [date] = useState(new Date());
+  const [viewModal, setViewModal] = useState(false);
+  const [messageModal, setMessaModal] = useState('');
+
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,60 +20,44 @@ export default function Login() {
     try {
 
       if (email === '' && password === '') {
-        alert('Preencha todos os campos.');
+        setViewModal(true);
+        setMessaModal('Favor preencher todos os campos.');
         return;
       }
 
       setLoading(true);
       const response = await api.post('/login', { email, password });
-
+      console.log(response)
       if (response.status === 200) {
         sessionStorage.setItem('token', response.data);
         window.location.href = '/home';
       }
     } catch (error) {
+      console.log(error.response)
       if (error.response.status === 400) {
-        alert(error.response.data.message);
+        setLoading(false)
+        setViewModal(true);
+        setMessaModal(error.response.data.message);
+        return;
       }
     }
   }
 
   return (
-    <div className="all-content-login">
+    <div className="container-login">
       {loading ? <Loading /> : ''}
-      <div className="head-login">
-        <div className="logo-login"></div>
-      </div>
-      <div className="row center ">
-        <div className="container-login">
-          <div className="row center column">
-            <div className="title-login">Insira seus dados para <br className="hide-pc"></br> prosseguir com o atendimento:</div>
-            <div className="area-form-initial">
-              <form onSubmit={handleSubmit}>
-                <div className="content-box-login">
-                  <div id="area-pf">
-                    <div className="column m-20">
-                      <label className="gray-login" htmlFor="field-cpf">E-mail:</label>
-                      <input className="input-login row" value={email} onChange={e => setEmail(e.target.value)} autoComplete="off" autoFocus />
-                    </div>
-                    <div className="column m-20">
-                      <label className="gray-login">Senha:</label>
-                      <input className="input-login row" value={password} onChange={e => setPassword(e.target.value)} type="password" autoComplete="off" />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="row center">
-                      <button type="submit" className="bt-default m-20">Continuar</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="footer center">
+      {viewModal ? <Modal viewModal={setViewModal} message={messageModal} /> : ''}
+
+      <div className="box-login">
+        <label className="label-login">BARBER SHOP</label>
+        <div className="form-login">
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="email">E-MAIL:</label>
+            <input className="input-login" type="email" id="email" name="email" value={email} onChange={event => setEmail(event.target.value)} autoComplete="off" />
+            <label htmlFor="email">SENHA:</label>
+            <input className="input-login" type="password" id="password" name="password" value={password} onChange={event => setPassword(event.target.value)} autoComplete="off" />
+            <button className="btn-form" type="submit">Acessar</button>
+          </form>
         </div>
       </div>
     </div>
