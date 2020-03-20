@@ -10,7 +10,7 @@ export default function Menu() {
           <li><div className="icon-itens-menu"></div><a href="/schedule">AGENDA</a></li>
           <li><div className="icon-itens-menu"></div><a href="/barbershops">BARBEARIAS</a></li>
           <li><div className="icon-itens-menu"></div><a href="/profile">MEU PERFIL</a></li>
-          <li><div className="icon-itens-menu"></div><a href="/profile">RELATÓRIOS</a></li>
+          <li><div className="icon-itens-menu"></div><a href="/reports">RELATÓRIOS</a></li>
           <li><div className="icon-itens-menu"></div><a href="/">SAIR</a></li>
         </ul>
       </div>

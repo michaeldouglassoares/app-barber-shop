@@ -51,10 +51,10 @@ export default function Login() {
       <div className="box-login">
         <label className="label-login">BARBER SHOP</label>
         <div className="form-login">
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="email">E-MAIL:</label>
+          <form className="form-login" onSubmit={handleSubmit}>
+            <label className="label-input" htmlFor="email">E-MAIL:</label>
             <input className="input-login" type="email" id="email" name="email" value={email} onChange={event => setEmail(event.target.value)} autoComplete="off" />
-            <label htmlFor="email">SENHA:</label>
+            <label className="label-input" htmlFor="email">SENHA:</label>
             <input className="input-login" type="password" id="password" name="password" value={password} onChange={event => setPassword(event.target.value)} autoComplete="off" />
             <button className="btn-form" type="submit">Acessar</button>
           </form>
