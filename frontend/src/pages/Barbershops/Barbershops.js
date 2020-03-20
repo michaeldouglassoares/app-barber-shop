@@ -5,6 +5,11 @@ import Menu from '../../components/Menu/Menu';
 export default function Barbershops() {
 
   return (
-    <Menu />
+    <div>
+      <Menu />
+      <div className="container">
+        
+      </div>
+    </div>
   )
 }

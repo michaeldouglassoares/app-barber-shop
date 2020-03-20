@@ -4,6 +4,11 @@ import Menu from '../../components/Menu/Menu';
 
 export default function Reports() {
   return (
-    <Menu />
+    <div>
+      <Menu />
+      <div className="container">
+        
+      </div>
+    </div>
   )
 }
