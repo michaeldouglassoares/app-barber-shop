@@ -23,11 +23,12 @@ class LoginService {
       if (!user || !(await user.checkPassword(password))) {
         return this.returnMessageError('Usuário não encontrado.');
       }
-      const data = { id: user.id, user: user.name.split(' ')[0], email: user.email, admin: user.admin };
+      const name = user.name.split(' ')[0];
+      const data = { id: user.id, user: name, email: user.email, admin: user.admin };
 
       const response = await SessionService.createSessionClient(data);
 
-      return response ? response : false;
+      return response ? { response, name } : false;
     } catch (error) {
       console.log(error);
     }

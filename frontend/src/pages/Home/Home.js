@@ -12,13 +12,15 @@ export default function Home() {
 
   useEffect(() => {
 
-    //getMyClients();
+    schedule();
   }, []);
 
-  async function getMyClients() {
+  async function schedule() {
 
     try {
 
+      const response = await api.get('/schedules');
+      console.log(response);
 
     } catch (error) {
 
@@ -36,8 +38,8 @@ export default function Home() {
       <section className="container">
         <div className="header-home">
           <div className="container-left">
-          <div className="row-left">Olá, Michael</div>
-          <div className="row-left">20/03/2020</div>
+            <div className="row-left">Olá, {sessionStorage.getItem('name')}</div>
+            <div className="row-left">20/03/2020</div>
           </div>
           <div className="container-qtd">
             <div className="qtd-attended">ATENDIDOS 50</div>

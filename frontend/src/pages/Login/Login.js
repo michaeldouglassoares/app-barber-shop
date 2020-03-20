@@ -27,9 +27,10 @@ export default function Login() {
 
       setLoading(true);
       const response = await api.post('/login', { email, password });
-      console.log(response)
+
       if (response.status === 200) {
-        sessionStorage.setItem('token', response.data);
+        sessionStorage.setItem('token', response.data.response);
+        sessionStorage.setItem('name', response.data.name);
         window.location.href = '/home';
       }
     } catch (error) {
