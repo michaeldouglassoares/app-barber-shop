@@ -11,25 +11,34 @@ import Loading from '../../components/Loading/Loading';
 export default function Home() {
 
   useEffect(() => {
-
     schedule();
   }, []);
+
+  const [loading, setLoading] = useState(true);
+  const [schedules, setSchedules] = useState([]);
 
   async function schedule() {
 
     try {
 
       const response = await api.get('/schedules');
-      console.log(response);
+
+      if (response.status === 200) {
+        setLoading(false);
+        setSchedules(response.data);
+      }
 
     } catch (error) {
-
+      if (error.response.status === 401) {
+        sessionStorage.clear();
+        window.location.href = '/';
+      }
     }
-
-    return true;
   }
 
-  const [loading, setLoading] = useState(false);
+  function openModalEdit(schedule) {
+    console.log(schedule);
+  }
 
   return (
     <div>
@@ -63,48 +72,14 @@ export default function Home() {
                 </ul>
               </div>
               <div className="result-table">
-                <ul className="itens-table">
-                  <li className="row-header">Michael Douglas Soares</li>
-                  <li className="row-header">15:00</li>
-                  <li className="row-header">Barba/Cabelo</li>
-                  <li className="row-header btn-edit"> <FaUserEdit /></li>
-                </ul>
-                <ul className="itens-table">
-                  <li className="row-header">Matheus Afornali</li>
-                  <li className="row-header">16:00</li>
-                  <li className="row-header">Barba</li>
-                  <li className="row-header btn-edit"> <FaUserEdit /></li>
-                </ul>
-                <ul className="itens-table">
-                  <li className="row-header">Rafael Cardoso</li>
-                  <li className="row-header">16:30</li>
-                  <li className="row-header">Barba/Cabelo</li>
-                  <li className="row-header btn-edit"> <FaUserEdit /></li>
-                </ul>
-                <ul className="itens-table">
-                  <li className="row-header">Thiago Oliveira</li>
-                  <li className="row-header">17:30</li>
-                  <li className="row-header">Barba/Cabelo</li>
-                  <li className="row-header btn-edit"> <FaUserEdit /></li>
-                </ul>
-                <ul className="itens-table">
-                  <li className="row-header">Matheus Afornali</li>
-                  <li className="row-header">16:00</li>
-                  <li className="row-header">Barba</li>
-                  <li className="row-header btn-edit"> <FaUserEdit /></li>
-                </ul>
-                <ul className="itens-table">
-                  <li className="row-header">Rafael Cardoso</li>
-                  <li className="row-header">16:30</li>
-                  <li className="row-header">Barba/Cabelo</li>
-                  <li className="row-header btn-edit"> <FaUserEdit /></li>
-                </ul>
-                <ul className="itens-table">
-                  <li className="row-header">Thiago Oliveira</li>
-                  <li className="row-header">17:30</li>
-                  <li className="row-header">Barba/Cabelo</li>
-                  <li className="row-header btn-edit"> <FaUserEdit /></li>
-                </ul>
+                ({schedules.map((schedule) =>
+                  <ul className="itens-table">
+                    <li className="row-header">{schedule.name_client}</li>
+                    <li className="row-header">{new Date(schedule.schedule).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</li>
+                    <li className="row-header">{schedule.service}</li>
+                    <li className="row-header btn-edit"><FaUserEdit onClick={() => openModalEdit(schedule)} /></li>
+                  </ul>
+                )}
               </div>
             </div>
           </div>
