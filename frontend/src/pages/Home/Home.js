@@ -41,11 +41,11 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <>
       {loading ? <Loading /> : ''}
       <Menu />
       <section className="container-body" id="container-body">
-        <div className="header-home">
+        <div className="header-body">
           <div className="container-left">
             <div className="row-left">Olá, {sessionStorage.getItem('name')}</div>
             <div className="row-left">20/03/2020</div>
@@ -85,6 +85,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   )
 }

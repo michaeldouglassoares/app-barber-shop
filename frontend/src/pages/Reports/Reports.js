@@ -6,7 +6,7 @@ export default function Reports() {
   return (
     <div>
       <Menu />
-      <div className="container">
+      <div className="container-body">
         
       </div>
     </div>

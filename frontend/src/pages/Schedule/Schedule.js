@@ -7,7 +7,7 @@ export default function Schedule() {
   return (
     <div>
       <Menu />
-      <div className="container">
+      <div className="container-body">
         
       </div>
     </div>
