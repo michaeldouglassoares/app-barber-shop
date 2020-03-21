@@ -44,7 +44,7 @@ export default function Home() {
     <div>
       {loading ? <Loading /> : ''}
       <Menu />
-      <section className="container">
+      <section className="container-body" id="container-body">
         <div className="header-home">
           <div className="container-left">
             <div className="row-left">Olá, {sessionStorage.getItem('name')}</div>
@@ -72,8 +72,8 @@ export default function Home() {
                 </ul>
               </div>
               <div className="result-table">
-                ({schedules.map((schedule) =>
-                  <ul className="itens-table">
+                {schedules.map((schedule, index) =>
+                  <ul key={index} className="itens-table">
                     <li className="row-header">{schedule.name_client}</li>
                     <li className="row-header">{new Date(schedule.schedule).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</li>
                     <li className="row-header">{schedule.service}</li>

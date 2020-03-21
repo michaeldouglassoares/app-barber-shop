@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false,
       },
       address: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       bairro: {

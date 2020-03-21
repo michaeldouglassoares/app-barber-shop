@@ -21,10 +21,13 @@ button {
 }
 
 .container-menu {
-    width: 300px;
-    position: absolute;
-    height: 100%;
+    width: 100%;
+    height: 70px;
     background-color: #292933;
+}
+
+.list-menu{
+    display: none;
 }
 
 .list-menu ul {
@@ -54,13 +57,28 @@ button {
     text-decoration: none;
 }
 
+.space-menu{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.open-close-menu{
+    display: flex;   
+    font-size: 50px;
+    width: 50%;
+}
+
+.open-close-menu svg{
+    cursor: pointer
+}
+
 .logo-menu {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 40px;
-    width: 100%;
-    height: 180px;
+    font-size: 25px;
+    width: 50%;
     color: white;
 }
 
@@ -84,8 +102,8 @@ button {
     -webkit-box-shadow: 0 5px 10px 16px rgba(253, 241, 255, 0.1);
     -o-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .1);
     -ms-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .1);
-    width: 370px;
-    height: 600px;
+    width: 325px;
+    height: 545px;
     background-color: #212121;
 }
 
@@ -196,17 +214,19 @@ button {
     align-items: center;
 }
 
-.container {
+.container-body {
     width: 100%;
     height: 100%;
-    background-color: #212121;
+    position: absolute;
+    right: 0;
+    background-color: #a7a5a5;
 }
 
 .header-home {
     width: 100%;
     display: flex;
     margin: 0;
-    height: 200px;
+    height: 150px;
 }
 
 .row-left{
@@ -216,7 +236,6 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 400px;
     height: 50%;
 }
 
@@ -235,8 +254,8 @@ button {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 40%;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
 .container-calendar{
@@ -244,18 +263,20 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 440px;
-    height: 440px;
+    width: 338px;
+    height: 419px;
     background-color: #292933;
 }
 
 .container-left{
-    width: 50%;
+    width: 32%;
     height: 100%;
 }
 
 .container-qtd{
-    width: 50%;
+    justify-content: end;
+    align-items: center;
+    width: 68%;
     margin: 0;
     height: 100%;
     display: flex;
@@ -298,7 +319,8 @@ button {
 .qtd-attended{
     border-radius: 20px;
     margin: 20px;
-    font-size: 18px;
+    height: 80px;
+    font-size: 11px;
     font-weight: bold;
     color: white;
     display: flex;
@@ -309,8 +331,9 @@ button {
 }
 
 .qtd-waiting{
-    font-size: 18px;
+    font-size: 10px;
     font-weight: bold;
+    height: 80px;
     color: white;
     border-radius: 20px;
     margin: 20px;
@@ -359,6 +382,8 @@ button {
 .itens-table{
     width: 100%;
     display: flex;
+    border-bottom: 1px solid;
+    color: white;
     flex-direction: row;
 }
 

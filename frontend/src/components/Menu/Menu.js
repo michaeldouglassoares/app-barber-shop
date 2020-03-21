@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { IoIosBriefcase } from 'react-icons/io';
+import { IoIosBriefcase, IoMdReorder } from 'react-icons/io';
 import { FaHome, FaCalendarAlt, FaBuffer, FaLongArrowAltRight, FaUserEdit } from 'react-icons/fa';
 
 export default function Menu() {
+
+  const [viewMenu, setViewMenu] = useState(true);
+
+  function openCloseMenu() {
+
+    const classBody = document.getElementById('container-body');
+    const classMenu = document.getElementById('container-menu');
+
+    if (viewMenu) {
+      classMenu.style.display = 'none';
+      classBody.style.width = '100%';
+      setViewMenu(true);
+    } else {
+      classMenu.style.display = 'none';
+      classBody.style.width = 'calc(100% - 300px)';
+      setViewMenu(false);
+    }
+  }
   return (
-    <div className="container-menu">
-      <div className="logo-menu">BARBERSHOP</div>
+    <section className="container-menu" id="container-menu">
+      <div className="space-menu">
+        <div className="open-close-menu"><IoMdReorder onClick={openCloseMenu} /></div>
+        <div className="logo-menu">BARBERSHOP</div>
+      </div>
       <div className="list-menu">
         <ul>
           <li className="container-itens">
@@ -59,6 +80,6 @@ export default function Menu() {
           </li>
         </ul>
       </div>
-    </div>
+    </section>
   )
 }
