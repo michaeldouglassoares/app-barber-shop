@@ -10,8 +10,34 @@ import { IoIosAddCircle } from 'react-icons/io';
 export default function Barbershops() {
 
   const [loading, setLoading] = useState(true);
-  const [modalForm, setModalForm] = useState(true);
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [bairro, setBairro] = useState('');
+  const [number, setNumber] = useState('');
+  const [modalForm, setModalForm] = useState(false);
   const [barberShops, setBarberShops] = useState([]);
+  const [form, setForm] = useState([
+    {
+      'label': 'NOME',
+      'name': 'name',
+      'set': setName
+    },
+    {
+      'label': 'ENDEREÇO',
+      'name': 'address',
+      'set': setAddress
+    },
+    {
+      'label': 'BAIRRO',
+      'name': 'bairro',
+      'set': setBairro
+    },
+    {
+      'label': 'NUMERO',
+      'name': 'number',
+      'set': setNumber
+    },]
+  );
 
   useEffect(() => {
     getBarberShops();
@@ -28,7 +54,10 @@ export default function Barbershops() {
         setBarberShops(response.data);
       }
     } catch (error) {
-
+      if (error.response.status === 401) {
+        sessionStorage.clear();
+        window.location.href = '/';
+      }
     }
   }
 
@@ -36,15 +65,18 @@ export default function Barbershops() {
     <div>
       {loading ? <Loading /> : ''}
       <Menu />
+      {modalForm ? <ModalForm labelHeader="Cadastrar nova unidade" setOpenModal={setModalForm} form={form} /> : ''}
       <section className="container-body" id="container-body">
-        {modalForm ? <ModalForm /> : ''}
         <div className="header-body">
           <div className="header-left">
             <strong>Listagem barbearias</strong>
           </div>
           <div className="header-right">
             <div className="space-new-barber">
-              <strong><IoIosAddCircle />Nova unidade</strong>
+              <strong onClick={() => setModalForm(true)}>
+                <IoIosAddCircle />
+                Nova unidade
+              </strong>
             </div>
           </div>
         </div>
