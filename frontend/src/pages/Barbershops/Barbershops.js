@@ -3,12 +3,14 @@ import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 
 import Menu from '../../components/Menu/Menu';
+import ModalForm from '../../components/Modal/ModalForm';
 import Loading from '../../components/Loading/Loading';
 import { IoIosAddCircle } from 'react-icons/io';
 
 export default function Barbershops() {
 
   const [loading, setLoading] = useState(true);
+  const [modalForm, setModalForm] = useState(true);
   const [barberShops, setBarberShops] = useState([]);
 
   useEffect(() => {
@@ -35,6 +37,7 @@ export default function Barbershops() {
       {loading ? <Loading /> : ''}
       <Menu />
       <section className="container-body" id="container-body">
+        {modalForm ? <ModalForm /> : ''}
         <div className="header-body">
           <div className="header-left">
             <strong>Listagem barbearias</strong>
