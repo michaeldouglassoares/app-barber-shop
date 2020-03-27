@@ -6,36 +6,29 @@ import Menu from '../../components/Menu/Menu';
 import ModalForm from '../../components/Modal/ModalForm';
 import Loading from '../../components/Loading/Loading';
 import { IoIosAddCircle } from 'react-icons/io';
+import { FaTrashRestoreAlt } from 'react-icons/fa';
 
 export default function Barbershops() {
 
-  const [loading, setLoading] = useState(true);
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [bairro, setBairro] = useState('');
-  const [number, setNumber] = useState('');
+  const [loading, setLoading] = useState(false);
   const [modalForm, setModalForm] = useState(false);
   const [barberShops, setBarberShops] = useState([]);
   const [form, setForm] = useState([
     {
       'label': 'NOME',
-      'name': 'name',
-      'set': setName
+      'name': 'name'
     },
     {
       'label': 'ENDEREÇO',
-      'name': 'address',
-      'set': setAddress
+      'name': 'address'
     },
     {
       'label': 'BAIRRO',
-      'name': 'bairro',
-      'set': setBairro
+      'name': 'bairro'
     },
     {
       'label': 'NUMERO',
-      'name': 'number',
-      'set': setNumber
+      'name': 'number'
     },]
   );
 
@@ -65,7 +58,7 @@ export default function Barbershops() {
     <div>
       {loading ? <Loading /> : ''}
       <Menu />
-      {modalForm ? <ModalForm labelHeader="Cadastrar nova unidade" setOpenModal={setModalForm} form={form} /> : ''}
+      {modalForm ? <ModalForm route="/new-barbershop" values={barberShops} labelHeader="Cadastrar nova unidade" setOpenModal={setModalForm} form={form} /> : ''}
       <section className="container-body" id="container-body">
         <div className="header-body">
           <div className="header-left">
@@ -91,6 +84,7 @@ export default function Barbershops() {
                     <li className="row-header">BAIRRO</li>
                     <li className="row-header">NUMERO</li>
                     <li className="row-header">Nº BARBEIROS</li>
+                    <li className="row-header">AÇÕES</li>
                   </ul>
                 </div>
                 <div className="result-table">
@@ -101,6 +95,9 @@ export default function Barbershops() {
                       <li className="row-header">{barberShop.bairro}</li>
                       <li className="row-header">{barberShop.number}</li>
                       <li className="row-header">5</li>
+                      <li className="row-header">
+                        <FaTrashRestoreAlt />
+                      </li>
                     </ul>
                   )}
                 </div>

@@ -140,7 +140,7 @@ button {
     align-items: center;
 }
 
-.input-login {
+.input-form {
     border: none;
     padding: 0 5px;
     border-bottom: 2px solid #adadad;
@@ -150,7 +150,7 @@ button {
     align-items: center;
     font-family: Poppins-Regular;
     font-size: 15px;
-    color: #555;
+    color: white;
     line-height: 1.2;
     display: block;
     width: 100%;
@@ -365,7 +365,7 @@ button {
 .row-header{
     width: 25%;
     color: white;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -408,10 +408,15 @@ button {
     height: 100%;
 }
 
+.header-left strong{
+    margin-left: 250px;
+}
+
 .header-right{
     font-size: 25px;
     width: 50%;
     height: 100%;
+    margin-right: 250px;
 }
 
 .space-new-barber{
@@ -446,7 +451,6 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
     top: 0;
     width: 100%;
     position: fixed;

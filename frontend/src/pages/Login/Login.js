@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 
+import { Link, useHistory } from 'react-router-dom';
+
 import api from '../../services/api';
 import Modal from '../../components/Modal/Modal';
 import Loading from '../../components/Loading/Loading';
 
 export default function Login() {
 
+  const history = useHistory();
   const [viewModal, setViewModal] = useState(false);
   const [messageModal, setMessaModal] = useState('');
 
@@ -29,12 +32,11 @@ export default function Login() {
       const response = await api.post('/login', { email, password });
 
       if (response.status === 200) {
-        sessionStorage.setItem('token', response.data.response);
-        sessionStorage.setItem('name', response.data.name);
-        window.location.href = '/home';
+        localStorage.setItem('token', response.data.response);
+        localStorage.setItem('name', response.data.name);
+        history.push('/home')
       }
     } catch (error) {
-      console.log(error.response)
       if (error.response.status === 400) {
         setLoading(false)
         setViewModal(true);
@@ -54,9 +56,9 @@ export default function Login() {
         <div className="form-login">
           <form className="form-login" onSubmit={handleSubmit}>
             <label className="label-input" htmlFor="email">E-MAIL:</label>
-            <input className="input-login" type="email" id="email" name="email" value={email} onChange={event => setEmail(event.target.value)} autoComplete="off" />
+            <input className="input-form" type="email" id="email" name="email" value={email} onChange={event => setEmail(event.target.value)} autoComplete="off" />
             <label className="label-input" htmlFor="email">SENHA:</label>
-            <input className="input-login" type="password" id="password" name="password" value={password} onChange={event => setPassword(event.target.value)} autoComplete="off" />
+            <input className="input-form" type="password" id="password" name="password" value={password} onChange={event => setPassword(event.target.value)} autoComplete="off" />
             <button className="btn-form" type="submit">Acessar</button>
           </form>
         </div>

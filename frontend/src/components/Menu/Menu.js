@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { IoIosBriefcase, IoMdReorder } from 'react-icons/io';
 import { FaHome, FaCalendarAlt, FaBuffer, FaLongArrowAltRight, FaUserEdit } from 'react-icons/fa';
 
@@ -35,7 +37,7 @@ export default function Menu() {
               <FaHome />
             </div>
             <div className="link-menu">
-              <a href="/home">HOME</a>
+              <Link to="/home">HOME</Link>
             </div>
           </li>
           <li className="container-itens">
@@ -43,7 +45,7 @@ export default function Menu() {
               <FaCalendarAlt />
             </div>
             <div className="link-menu">
-              <a href="/schedule">AGENDA</a>
+              <Link to="/schedule">AGENDA</Link>
             </div>
           </li>
           <li className="container-itens">
@@ -51,7 +53,7 @@ export default function Menu() {
               <IoIosBriefcase />
             </div>
             <div className="link-menu">
-              <a href="/barbershops">BARBEARIAS</a>
+              <Link to="/barbershops">BARBEARIAS</Link>
             </div>
           </li>
           <li className="container-itens">
@@ -59,7 +61,7 @@ export default function Menu() {
               <FaUserEdit />
             </div>
             <div className="link-menu">
-              <a href="/profile">MEU PERFIL</a>
+              <Link to="/profile">MEU PERFIL</Link>
             </div>
           </li>
           <li className="container-itens">
@@ -67,7 +69,7 @@ export default function Menu() {
               <FaBuffer />
             </div>
             <div className="link-menu">
-              <a href="/reports">RELATÓRIOS</a>
+              <Link to="/reports">RELATÓRIOS</Link>
             </div>
           </li>
           <li className="container-itens">
@@ -75,7 +77,7 @@ export default function Menu() {
               <FaLongArrowAltRight />
             </div>
             <div className="link-menu">
-              <a href="/">SAIR</a>
+              <Link to="/">SAIR</Link>
             </div>
           </li>
         </ul>

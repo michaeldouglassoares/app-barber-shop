@@ -1,13 +1,48 @@
 import React from 'react';
 
+import { useHistory } from 'react-router-dom';
+import api from '../../services/api';
 import { IoIosCloseCircle } from 'react-icons/io';
 
-export default function ModalForm({ labelHeader, setOpenModal, form }) {
+export default function ModalForm({ route, values, labelHeader, setOpenModal, form }) {
+
+  const history = useHistory();
 
   async function handleSubmit(e) {
 
     e.preventDefault();
 
+    const inputs = document.querySelectorAll('.input-form');
+
+    var flag = false;
+    var params = {};
+    for (var i = 0; i <= inputs.length; i++) {
+      const input = inputs[i];
+
+      if (input !== undefined) {
+        if (input.value === '') {
+          flag = true;
+        } else {
+          var name = input.name;
+          params[name] = input.value;
+        }
+      }
+    }
+    if (flag) alert('preencha todos os campos.');
+
+    try {
+
+      const response = await api.post(route, params);
+      if (response.status === 200) {
+        values.push(response.data);
+        setOpenModal(false);
+      }
+    } catch (error) {
+      if (error.response.status === 401) {
+        localStorage.clear();
+        history.push('/');
+      }
+    }
   }
 
   return (
@@ -26,7 +61,7 @@ export default function ModalForm({ labelHeader, setOpenModal, form }) {
             {form.map((input, index) =>
               <div key={index} className="inputs-form">
                 <label className="label-input" htmlFor={input.name}>{input.label}:</label>
-                <input className="input-login" type="text" id={input.name} name={input.name} onChange={(e) => input.set(e.target.value)} autoComplete="off" />
+                <input className="input-form" type="text" name={input.name} autoComplete="off" />
               </div>
             )}
             <button className="btn-form" type="submit">Cadastrar</button>

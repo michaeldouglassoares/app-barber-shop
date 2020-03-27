@@ -142,7 +142,7 @@ button {
     align-items: center;
 }
 
-.input-login {
+.input-form {
     border: none;
     padding: 0 5px;
     border-bottom: 2px solid #adadad;
@@ -152,7 +152,7 @@ button {
     align-items: center;
     font-family: Poppins-Regular;
     font-size: 15px;
-    color: #555;
+    color: white;
     line-height: 1.2;
     display: block;
     width: 100%;

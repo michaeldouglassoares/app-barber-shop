@@ -1,6 +1,6 @@
 import BarberShopService from '../service/BarberShopService';
 
-class BarberShop {
+class BarberShopController {
 
   async get(req, res) {
 
@@ -22,4 +22,4 @@ class BarberShop {
   }
 }
 
-export default new BarberShop();
+export default new BarberShopController();

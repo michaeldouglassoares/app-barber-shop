@@ -14,7 +14,7 @@ export default function Home() {
     schedule();
   }, []);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [schedules, setSchedules] = useState([]);
 
   async function schedule() {
@@ -47,7 +47,7 @@ export default function Home() {
       <section className="container-body" id="container-body">
         <div className="header-body">
           <div className="container-left">
-            <div className="row-left">Olá, {sessionStorage.getItem('name')}</div>
+            <div className="row-left">Olá, {localStorage.getItem('name')}</div>
             <div className="row-left">20/03/2020</div>
           </div>
           <div className="container-qtd">
